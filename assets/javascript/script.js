@@ -16,7 +16,7 @@ resetBtn.addEventListener('click', resetTimer);
 function toggleTimer() {
     if (startStopBtn.textContent === "Start") {
         startStopBtn.textContent = "Stop";
-        resetTime = setInterval(changeTime, 1);
+        resetTime = setInterval(changeTime, 1000);
     } else {
         startStopBtn.textContent = "Start";
         clearInterval(resetTime);
