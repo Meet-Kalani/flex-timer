@@ -7,8 +7,6 @@ let second = 0;
 let minute = 0;
 let hour = 0;
 let resetTime;
-minute = prependZero(minute);
-hour = prependZero(hour);
 
 startStopBtn.addEventListener('click', toggleTimer);
 resetBtn.addEventListener('click', resetTimer);
@@ -28,9 +26,9 @@ function resetTimer() {
     second = 0;
     minute = 0;
     hour = 0;
-    countSecond.textContent = countMinute.textContent = countHour.textContent = "00";
-    minute = prependZero(minute);
-    hour = prependZero(hour);
+    countSecond.textContent = "00";
+    countMinute.textContent = "00";
+    countHour.textContent = "00";
     startStopBtn.textContent = "Start";
 }
 
@@ -39,32 +37,18 @@ function changeTime() {
     if (second == 60) {
         second = 0;
         minute++;
-        if (minute < 10) {
-            minute = prependZero(minute);
-        }
     }
 
     if (minute == 60) {
-        second = 0;
         minute = 0;
         hour++;
-        minute = prependZero(minute);
-        hour = prependZero(hour);
     }
 
-    if (second < 10) {
-        second = prependZero(second);
-    }
-    countSecond.textContent = second;
-    countMinute.textContent = minute;
-    countHour.textContent = hour;
+    countSecond.textContent = second.toLocaleString('en-US', {minimumIntegerDigits: 2});
+    countMinute.textContent = minute.toLocaleString('en-US', {minimumIntegerDigits: 2});
+    countHour.textContent = hour.toLocaleString('en-US', {minimumIntegerDigits: 2});
 
-    if(hour == 24){
+    if (hour == 24) {
         resetTimer();
     }
-}
-
-// for prepending 0 when there is only one digit in count i.e. 1, 2, .... => 01, 02, .....
-function prependZero(n) {
-    return "0" + n;
 }
